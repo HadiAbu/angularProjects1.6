@@ -1,0 +1,58 @@
+<!-- 
+  How To Select style different rows of ng-repeat using:
+  ng-class='{selected: $index==selectedRow}'
+ -->
+ <html ng-app="myApp">
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://www.freeicons.io/laravel/public/uploads/icons/png/18594121091536125453-256.png">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <style>
+      .selected {
+        background-color: lightgreen;
+        }
+    </style>
+<head>
+  <title>Your Search List</title>
+</head>
+
+<body ng-controller="MyController" >
+  <label class="right" ng-bind="date | date:'dd-MMM-yyyy'"></label><br><br>
+  <div style="text-align: center">
+    <h1>Search List</h1>
+    <div class="container">
+      <button class="btn btn-large waves-effect waves-light teal" ng-click="toggleSearch()">Toggle Search Section</button>
+      <div ng-show="showSearch">
+        <input type="text" ng-model="nameText">
+        <ul ng-repeat=" dict in directory | filter:nameText | orderBy: 'name' ">
+          <li ng-bind="dict.name"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js" charset="UTF-8"></script>
+
+  <script>
+    const app = angular.module("myApp",[]);
+    app.controller("MyController", function ($scope) {
+      $scope.date = new Date();
+      $scope.showSearch = false;
+      // $scope.nameText = "H";
+      $scope.directory = [{name:'The Handsome Heifer', cuisine:'BBQ'},
+                          {name:"Green's Green Greens", cuisine:'Salads'},
+                          {name:"Happy Feet", cuisine:'Movies'},
+                          {name:"Morning Wood", cuisine:'Lifestyle'},
+                          {name:"Street Smarts", cuisine:'Survival'},
+                          {name:"House of Fine Fish", cuisine:"Seafood"}];
+      $scope.toggleSearch = function(){
+        $scope.showSearch = !$scope.showSearch;
+      }
+    
+    });
+  </script>
+</body>
+
+</html>

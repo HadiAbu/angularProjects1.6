@@ -1,0 +1,45 @@
+<html ng-app='myApp'>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://www.freeicons.io/laravel/public/uploads/icons/png/18594121091536125453-256.png">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <style>
+      .menu-disabled-true{
+        background-color: red;
+      }
+    </style>
+<head>
+  <title>Your Shopping Cart</title>
+</head>
+
+<body ng-controller='MyController'>
+  <h1 style="text-align: center">Toggle Menu</h1>
+  <div class="container">
+    <a class="waves-effect waves-light btn menu-disabled-{{menuState.state}}" ng-click="toggleMenu()">Toggle Menu</a>
+    <div>
+      <ul ng-show="menuState.state" >
+        <li>ai</li>
+        <li>ap</li>
+        <li>ae</li>
+        <li>ho</li>
+        <li>ko</li>
+      </ul>
+    </div>
+  </div>
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js" charset="UTF-8"></script>
+  <script>
+    const app = angular.module("myApp",[]);
+    app.controller("MyController", function ($scope) {
+      $scope.menuState ={ state: false};
+
+      $scope.toggleMenu = function () {
+        $scope.menuState.state = !$scope.menuState.state;
+      }
+    });
+  </script>
+</body>
+
+</html>

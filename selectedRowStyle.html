@@ -1,0 +1,51 @@
+<!-- 
+  How To Select style different rows of ng-repeat using:
+  ng-class='{selected: $index==selectedRow}'
+ -->
+<html ng-app="myApp">
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://www.freeicons.io/laravel/public/uploads/icons/png/18594121091536125453-256.png">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <style>
+      .selected {
+        background-color: lightgreen;
+        }
+    </style>
+<head>
+  <title>Your Shopping Cart</title>
+</head>
+
+<body ng-controller="MyController">
+  <h1 style="text-align: center">Select Table Row</h1>
+  <div class="container">
+      <table>
+          <tr ng-repeat='restaurant in directory' ng-click='selectRestaurant($index)'
+          ng-class='{selected: $index==selectedRow}' style="border: 3px teal solid">
+          <td>{{restaurant.name}}</td>
+          <td>{{restaurant.cuisine}}</td>
+          </tr>
+          </table>
+    </div>
+  </div>
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js" charset="UTF-8"></script>
+  <script>
+    const app = angular.module("myApp",[]);
+    app.controller("MyController", function ($scope) {
+
+      $scope.directory = [{name:'The Handsome Heifer', cuisine:'BBQ'},
+                          {name:"Green's Green Greens", cuisine:'Salads'},
+                          {name:"House of Fine Fish", cuisine:"Seafood"}];
+    
+      $scope.selectRestaurant = function(row) {
+        $scope.selectedRow = row;
+      };
+
+    });
+  </script>
+</body>
+
+</html>
